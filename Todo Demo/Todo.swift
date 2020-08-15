@@ -29,10 +29,12 @@ class Todo: Codable {
     static func getArchiveURL() -> URL {
         let plistName = "todos"
         let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+        print(documentsDirectory)
         return documentsDirectory.appendingPathComponent(plistName).appendingPathExtension("plist")
     }
     
     static func saveToFile(todo: [Todo]) {
+        print("saving to file...")
         let archiveURL = getArchiveURL()
         let propertyListEncoder = PropertyListEncoder()
         let encodedTodos = try? propertyListEncoder.encode(todo)

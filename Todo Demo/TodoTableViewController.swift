@@ -35,6 +35,7 @@ class TodoTableViewController: UITableViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        Todo.saveToFile(todo: todos)
         tableView.reloadData()
     }
 
@@ -136,6 +137,7 @@ class TodoTableViewController: UITableViewController {
             let source = segue.source as! EditTodoTableViewController
             if source.isNewTodo {
                 todos.append(source.todo)
+                Todo.saveToFile(todo: todos)
                 tableView.reloadData() // this doesn't work... hmph
             }
             
