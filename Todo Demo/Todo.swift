@@ -26,4 +26,11 @@ class Todo {
         let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
         return documentsDirectory.appendingPathComponent(plistName).appendingPathExtension("plist")
     }
+    
+    static func saveToFile(todo: [Todo]) {
+    let archiveURL = getArchiveURL()
+    let propertyListEncoder = PropertyListEncoder()
+    let encodedFriends = try? propertyListEncoder.encode(todo)
+    try? encodedTodos?.write(to: archiveURL, options: .noFileProtection)
+}
 }
