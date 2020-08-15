@@ -21,6 +21,11 @@ class Todo: Codable {
         self.name = ""
     }
     
+    static func loadSampleTodos() -> [Todo] {
+        return [Todo(name: "Sample Todo")]
+    }
+    
+    
     static func getArchiveURL() -> URL {
         let plistName = "todos"
         let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
