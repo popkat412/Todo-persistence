@@ -80,6 +80,7 @@ class TodoTableViewController: UITableViewController {
             // Delete the row from the data source
             todos.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
+            Todo.saveToFile(todo: todos)
         } else if editingStyle == .insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
         }    
@@ -91,6 +92,7 @@ class TodoTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
         let todo = todos.remove(at: fromIndexPath.row)
         todos.insert(todo, at: to.row)
+        Todo.saveToFile(todo: todos)
         tableView.reloadData()
     }
     
