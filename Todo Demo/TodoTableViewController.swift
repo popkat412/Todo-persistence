@@ -17,6 +17,13 @@ class TodoTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if let loadedTodos = Todo.loadFromFile() {
+            print("Found file! Loading todos!")
+            todos = loadedTodos // ha ha, loaded friends 💰🤑💰
+        } else {
+            todos = Todo.loadSampleTodos()
+        }
 
         title = "Todos"
         // Uncomment the following line to preserve selection between presentations
