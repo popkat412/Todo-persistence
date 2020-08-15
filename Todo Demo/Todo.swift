@@ -41,4 +41,5 @@ class Todo: Codable {
         guard let decodedFriends = try? propertyListDecoder.decode(Array<Todo>.self, from: retrievedFriendsData) else { return nil }
         return decodedFriends
     }
+    
 }
