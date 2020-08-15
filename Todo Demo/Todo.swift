@@ -30,7 +30,7 @@ class Todo {
     static func saveToFile(todo: [Todo]) {
     let archiveURL = getArchiveURL()
     let propertyListEncoder = PropertyListEncoder()
-    let encodedFriends = try? propertyListEncoder.encode(todo)
+    let encodedTodos = try? propertyListEncoder.encode(todo)
     try? encodedTodos?.write(to: archiveURL, options: .noFileProtection)
 }
 }
