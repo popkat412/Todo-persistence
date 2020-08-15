@@ -8,7 +8,7 @@
 
 import Foundation
 
-class Todo {
+class Todo: Codable {
     
     var name: String
     var done = false
@@ -28,17 +28,17 @@ class Todo {
     }
     
     static func saveToFile(todo: [Todo]) {
-    let archiveURL = getArchiveURL()
-    let propertyListEncoder = PropertyListEncoder()
-    let encodedTodos = try? propertyListEncoder.encode(todo)
-    try? encodedTodos?.write(to: archiveURL, options: .noFileProtection)
-}
+        let archiveURL = getArchiveURL()
+        let propertyListEncoder = PropertyListEncoder()
+        let encodedTodos = try? propertyListEncoder.encode(todo)
+        try? encodedTodos?.write(to: archiveURL, options: .noFileProtection)
+    }
     
-    static func loadFromFile() -> [Friend]? {
-    let archiveURL = getArchiveURL()
-    let propertyListDecoder = PropertyListDecoder()
-    guard let retrievedFriendsData = try? Data(contentsOf: archiveURL) else { return nil }
-    guard let decodedFriends = try? propertyListDecoder.decode(Array<Friend>.self, from: retrievedFriendsData) else { return nil }
-    return decodedFriends
-}
+    static func loadFromFile() -> [Todo]? {
+        let archiveURL = getArchiveURL()
+        let propertyListDecoder = PropertyListDecoder()
+        guard let retrievedFriendsData = try? Data(contentsOf: archiveURL) else { return nil }
+        guard let decodedFriends = try? propertyListDecoder.decode(Array<Todo>.self, from: retrievedFriendsData) else { return nil }
+        return decodedFriends
+    }
 }
